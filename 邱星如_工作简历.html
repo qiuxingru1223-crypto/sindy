@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>邱星如 · 动态便当盒简历</title>
+<style>
+/* ===== 重置 & 基础 ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:15px;scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Inter",sans-serif;background:#f0f3f8;color:#1a1d23;line-height:1.7;padding:24px}
+
+/* ===== Bento 容器 ===== */
+.container{max-width:1120px;margin:0 auto}
+.bento{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;grid-auto-flow:dense}
+
+/* ===== 通用卡片 ===== */
+.card{background:#fff;border-radius:16px;padding:24px;transition:all .25s cubic-bezier(.22,.61,.36,1);box-shadow:0 2px 8px rgba(0,0,0,.04);border:1px solid rgba(0,0,0,.04);position:relative;overflow:hidden}
+.card:hover{box-shadow:0 12px 40px rgba(31,105,224,.10);transform:translateY(-3px);border-color:rgba(31,105,224,.15)}
+.badge{display:inline-block;font-size:.58rem;font-weight:700;letter-spacing:.1em;color:#fff;background:#1F69E0;padding:2px 12px;border-radius:20px;margin-bottom:12px;text-transform:uppercase}
+
+/* ===== 尺寸变体 ===== */
+.wide{grid-column:span 2}
+.full{grid-column:1/-1}
+.tall{grid-row:span 2}
+
+/* ===== 姓名品牌卡 ===== */
+.name-card{background:linear-gradient(135deg,#1F69E0 0%,#0d47a1 100%);color:#fff;padding:32px 28px}
+.name-card .name{font-size:2.6rem;font-weight:700;letter-spacing:-.01em;line-height:1.1;margin-bottom:6px}
+.name-card .sub{font-size:.9rem;opacity:.85;letter-spacing:.06em;margin-bottom:12px}
+.name-card .tagline{font-size:.82rem;opacity:.65;line-height:1.7;max-width:85%}
+.name-card .deco{position:absolute;right:-30px;bottom:-30px;width:160px;height:160px;border-radius:50%;background:rgba(255,255,255,.04)}
+.name-card .deco2{position:absolute;right:60px;bottom:60px;width:80px;height:80px;border-radius:50%;background:rgba(255,255,255,.03)}
+
+/* ===== 核心数据统计卡 ===== */
+.stat-card{text-align:center;padding:22px 12px;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.stat-card .num{font-size:2.2rem;font-weight:800;color:#1F69E0;line-height:1.1;letter-spacing:-.03em}
+.stat-card .num .small{font-size:1.2rem;font-weight:600}
+.stat-card .num-label{font-size:.68rem;color:#888;letter-spacing:.04em;margin-top:6px;max-width:100px;line-height:1.4}
+
+/* ===== 信息条 ===== */
+.info-card{display:flex;flex-wrap:wrap;align-content:center;gap:6px 24px;font-size:.76rem;color:#666;padding:20px 24px}
+.info-card .label{color:#aaa;margin-right:2px}
+.info-card span{letter-spacing:.01em}
+
+/* ===== 时间线 ===== */
+.timeline-item{padding-left:18px;border-left:2px solid #e8ecf4;margin-bottom:16px;position:relative}
+.timeline-item:last-child{margin-bottom:0}
+.timeline-item::before{content:"";position:absolute;left:-5px;top:6px;width:8px;height:8px;border-radius:50%;background:#1F69E0;border:2px solid #fff;box-shadow:0 0 0 2px #1F69E0}
+.timeline-item .period{font-size:.65rem;color:#1F69E0;font-weight:600;letter-spacing:.04em;margin-bottom:2px}
+.timeline-item .org{font-size:.92rem;font-weight:600;color:#1a1d23;margin-bottom:1px}
+.timeline-item .role{font-size:.76rem;color:#888;margin-bottom:4px}
+
+/* ===== 工作阶段 ===== */
+.phase-item{padding:12px 16px;background:#f8faff;border-radius:10px;border-left:3px solid #1F69E0;margin-bottom:10px}
+.phase-item:last-child{margin-bottom:0}
+.phase-period{font-size:.63rem;color:#1F69E0;font-weight:600;letter-spacing:.04em;margin-bottom:2px}
+.phase-title{font-size:.85rem;font-weight:600;color:#1a1d23;margin-bottom:4px}
+.phase-desc{font-size:.74rem;color:#555;line-height:1.6}
+
+/* ===== 详情列表 ===== */
+.detail-list{font-size:.76rem;color:#555;line-height:1.7}
+.dl-group{margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid #f0f3f8}
+.dl-group:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
+.dl-group ul{list-style:none;padding-left:12px}
+.dl-group li{position:relative;padding-left:16px;margin-bottom:3px}
+.dl-group li::before{content:"";position:absolute;left:0;top:8px;width:5px;height:5px;border-radius:50%;background:#1F69E0}
+
+/* ===== 技能网格 ===== */
+.skill-inner-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.skill-group{background:#f8faff;padding:12px 14px;border-radius:10px;border:1px solid #eef2f8}
+.skill-group-title{font-size:.78rem;font-weight:600;color:#1F69E0;margin-bottom:5px}
+.skill-group-items{font-size:.72rem;color:#555;line-height:1.6}
+.skill-tag{display:inline-block;font-size:.65rem;background:#f0f3f8;color:#555;padding:1px 8px;border-radius:4px;margin:2px 2px}
+
+/* ===== 沉淀列表 ===== */
+.precip-list{font-size:.76rem;color:#555;line-height:1.7;list-style:none}
+.precip-list li{padding:8px 0 8px 20px;position:relative;border-bottom:1px solid #f0f3f8}
+.precip-list li:last-child{border-bottom:none}
+.precip-list li::before{content:"→";position:absolute;left:0;color:#1F69E0;font-weight:600}
+
+/* ===== 底部 ===== */
+.footer{grid-column:1/-1;text-align:center;font-size:.68rem;color:#bbb;padding:20px 0 8px;letter-spacing:.06em}
+
+/* ===== 响应式 ===== */
+@media(max-width:960px){
+  .bento{grid-template-columns:repeat(2,1fr)}
+  .name-card .tagline{max-width:100%}
+}
+@media(max-width:640px){
+  body{padding:12px}
+  .bento{grid-template-columns:1fr;gap:12px}
+  .card{padding:18px}
+  .wide{grid-column:span 1}
+  .tall{grid-row:span 1}
+  .skill-inner-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="bento">
+
+  <!-- ===== 1. 姓名品牌卡 - wide ===== -->
+  <div class="card name-card wide">
+    <div class="deco"></div>
+    <div class="deco2"></div>
+    <div class="name">邱星如</div>
+    <div class="sub">知识运营 | AI技能创新 | 内容增长</div>
+    <div class="tagline">5年+运营与培训经验，擅长AI工具落地、内容体系搭建与数据驱动运营。金山办公（WPS）在职 · KOS三科高级认证</div>
+  </div>
+
+  <!-- ===== 2. 信息条 ===== -->
+  <div class="card info-card">
+    <span><span class="label">教育</span>华侨大学 · 国际经济与贸易</span>
+    <span><span class="label">英语</span>CET-6</span>
+    <span><span class="label">认证</span>KOS三科高级</span>
+    <span><span class="label">证书</span>SAC从业 · 驾照C照</span>
+  </div>
+
+  <!-- ===== 3. 关键数据卡 ===== -->
+  <div class="card stat-card">
+    <div class="num">51<span class="small">万+</span></div>
+    <div class="num-label">全年跨平台总曝光</div>
+  </div>
+
+  <!-- ===== 4. 关键数据卡 ===== -->
+  <div class="card stat-card">
+    <div class="num">121</div>
+    <div class="num-label">全年内容发布</div>
+  </div>
+
+  <!-- ===== 5. 职业时序 - tall ===== -->
+  <div class="card timeline-card tall" style="padding:24px">
+    <div class="badge">职业时序</div>
+    <div class="timeline-item">
+      <div class="period">2023.04 — 至今</div>
+      <div class="org">金山办公 · 客户成功部</div>
+      <div class="role">AI技能创新 · 知识运营</div>
+    </div>
+    <div class="timeline-item">
+      <div class="period">2021 — 2023.03</div>
+      <div class="org">广州点赞广告策划</div>
+      <div class="role">培训专员</div>
+    </div>
+    <div class="timeline-item">
+      <div class="period">2019 — 2021</div>
+      <div class="org">华夏智亿 / 达人咨询</div>
+      <div class="role">助理咨询师 · 培训师</div>
+    </div>
+    <div class="timeline-item">
+      <div class="period">2019 实习</div>
+      <div class="org">安踏体育 · FILA</div>
+      <div class="role">管培生</div>
+    </div>
+  </div>
+
+  <!-- ===== 6. 关键数据卡 ===== -->
+  <div class="card stat-card">
+    <div class="num">126</div>
+    <div class="num-label">知识平台视频课程上线</div>
+  </div>
+
+  <!-- ===== 7. 关键数据卡 ===== -->
+  <div class="card stat-card">
+    <div class="num">25</div>
+    <div class="num-label">直播场次辅助运营</div>
+  </div>
+
+  <!-- ===== 8. 关键数据卡 ===== -->
+  <div class="card stat-card">
+    <div class="num">5<span class="small">万+</span></div>
+    <div class="num-label">产品学习笔记字数</div>
+  </div>
+
+  <!-- ===== 9. 核心优势 - full ===== -->
+  <div class="card full">
+    <div class="badge">核心优势</div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:4px">
+      <div class="highlight-item" style="border:none;padding:0">
+        <strong>AI创新实践</strong><br>
+        <span style="font-size:.72rem;color:#666">从0到1构建2个AI Agent Skill（meeting-to-card / case-panorama），评测10+款AI工具</span>
+      </div>
+      <div class="highlight-item" style="border:none;padding:0">
+        <strong>内容运营增长</strong><br>
+        <span style="font-size:.72rem;color:#666">年发布121篇，全年曝光51万+，直播运营25场，多平台矩阵增长</span>
+      </div>
+      <div class="highlight-item" style="border:none;padding:0">
+        <strong>培训体系搭建</strong><br>
+        <span style="font-size:.72rem;color:#666">主导新人培训体系从0到1，覆盖65人，开发课件10+门，上线126门视频课</span>
+      </div>
+      <div class="highlight-item" style="border:none;padding:0">
+        <strong>产品深度</strong><br>
+        <span style="font-size:.72rem;color:#666">WPS全线深度掌握，KOS三科高级认证全通过，5万字+产品学习笔记</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 10. 金山办公 - AI技能创新 - wide ===== -->
+  <div class="card wide">
+    <div class="badge">AI技能创新 · 2026至今</div>
+    <div class="detail-list">
+      <div class="dl-group">
+        <ul>
+          <li>从0到1构建 <strong>meeting-to-card</strong> AI Agent Skill：多风格知识卡片生成，植入内容感知插画，引入金小喵IP定制化替代通用模板</li>
+          <li>主导 <strong>case-panorama</strong> 场景全景图 Skill：整合KD图标库Pro设计规范，支持多卡/单页双模式，实战验证多维表数据分级管理案例</li>
+          <li>系统性评测 <strong>10+款</strong> AI工具（ElevenLabs/讯飞智作/MiniMax/即梦AI等），对比8款知识卡片效果，总结2条最佳生成路径</li>
+          <li>试用灵犀CLAW批量抠图、约日程、定时任务等AI功能，探索AI提效落地场景</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 11. 金山办公 - 内容运营 - wide ===== -->
+  <div class="card wide">
+    <div class="badge">内容运营 · 2025</div>
+    <div class="detail-list">
+      <div class="dl-group">
+        <ul>
+          <li>从0到1搭建多平台内容运营体系，从"经验驱动"到"标准驱动"转型，<strong>年发布121篇</strong>内容</li>
+          <li><strong>平台增长</strong>：视频号粉丝5670（曝光33万+）· B站3383（曝光14万+）· 小红书214（曝光3.6万+）</li>
+          <li><strong>直播运营</strong>：全年辅助开播25场（交通行业系列/AI写作/多维表格等），优化前宣策略与中场互动</li>
+          <li><strong>体系建设</strong>：官网221篇视频封面设计（8个系列分类）· 122条灵感摘录库 · 多维表+自动化提醒发布流程</li>
+          <li><strong>专业认证</strong>：KOS三科高级认证全通过（演示3月/文字4月/表格7月）</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 12. 金山办公 - 专业筑基+培训支持 ===== -->
+  <div class="card">
+    <div class="badge" style="background:#5a7fb5">专业筑基 · 2024</div>
+    <div class="detail-list">
+      <div class="dl-group" style="border:none">
+        <ul>
+          <li>深入钻研WPS全线产品，累计撰写 <strong>5万字+</strong> 学习笔记</li>
+          <li>系统学习MECE/SCQA等结构化写作方法</li>
+          <li>积累PLG/MLG/SLG增长模型等行业知识</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 13. 金山办公 - 培训支持 ===== -->
+  <div class="card">
+    <div class="badge" style="background:#5a7fb5">培训支持 · 2023</div>
+    <div class="detail-list">
+      <div class="dl-group" style="border:none">
+        <ul>
+          <li>完成 <strong>7篇</strong> 客户成功案例撰写（酒钢/湖南高速/广发银行/中国石油等）</li>
+          <li>培训数据维护61个项目 · 反馈表约750份</li>
+          <li>内部讲师满意度 <strong>4.93</strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 14. 广州点赞 - wide ===== -->
+  <div class="card wide">
+    <div class="badge" style="background:#e67e22">广州点赞广告 · 培训专员 2021-2023</div>
+    <div class="detail-list">
+      <div class="dl-group">
+        <ul>
+          <li><strong>新人培训体系搭建</strong>：新兵训练营4期（覆盖65人），独立开发销售7阶/运营基础/商务礼仪等课件，共创运营/销售新人学习地图（52项任务）</li>
+          <li><strong>知识平台从0到1</strong>：搭建乐享平台，上线视频课程 <strong>126门</strong>（销售41/外卖运营40/点评运营45），完成证书勋章配置</li>
+          <li><strong>案例沉淀</strong>：《外卖案例手册》（100家）·《点评&笔记案例手册》（76家+达人库）· 编制《运营进阶话术3.0》</li>
+          <li><strong>活动组织</strong>："笔记话术PK挑战赛"31人4轮 · 四周年庆典4地齐聚 · 官方宣传片 · 篮球/羽毛球团建</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 15. 华夏智亿 ===== -->
+  <div class="card">
+    <div class="badge" style="background:#7f8c8d">华夏智亿 / 达人咨询</div>
+    <div class="detail-list">
+      <div class="dl-group" style="border:none">
+        <ul>
+          <li>主持线下培训班7个 · 线上直播课10余场</li>
+          <li>撰写方案约24个 · 标书约7个</li>
+          <li>7个员工思想动态调研项目</li>
+          <li>出差覆盖8省</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 16. 安踏实习 + 在校经历（合并） ===== -->
+  <div class="card">
+    <div class="badge" style="background:#7f8c8d">其他经历</div>
+    <div class="detail-list">
+      <div class="dl-group" style="border-bottom:none">
+        <div style="font-weight:600;color:#1a1d23;font-size:.78rem;margin-bottom:4px">安踏体育 · FILA 管培生（实习）</div>
+        <ul><li>零售终端实习经历</li></ul>
+      </div>
+      <div class="dl-group" style="border-bottom:none;margin-top:8px">
+        <div style="font-weight:600;color:#1a1d23;font-size:.78rem;margin-bottom:4px">在校经历</div>
+        <ul>
+          <li>学院网宣部部长</li>
+          <li>辩论队副队长</li>
+          <li>校易班影音编辑部部长</li>
+          <li>班级生活委员</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 17. 能力光谱 - wide ===== -->
+  <div class="card wide">
+    <div class="badge">能力光谱</div>
+    <div class="skill-inner-grid">
+      <div class="skill-group">
+        <div class="skill-group-title">AI工具</div>
+        <div class="skill-group-items">
+          <span class="skill-tag">ElevenLabs</span>
+          <span class="skill-tag">讯飞智作</span>
+          <span class="skill-tag">MiniMax</span>
+          <span class="skill-tag">即梦AI</span>
+          <span class="skill-tag">剪映AI</span>
+          <span class="skill-tag">灵犀CLAW</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">内容创作</div>
+        <div class="skill-group-items">
+          <span class="skill-tag">PPT/Excel/Word</span>
+          <span class="skill-tag">PS</span>
+          <span class="skill-tag">Procreate</span>
+          <span class="skill-tag">稿定设计</span>
+          <span class="skill-tag">剪映</span>
+          <span class="skill-tag">135/秀米</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">运营平台</div>
+        <div class="skill-group-items">
+          <span class="skill-tag">视频号</span>
+          <span class="skill-tag">B站</span>
+          <span class="skill-tag">小红书</span>
+          <span class="skill-tag">公众号</span>
+          <span class="skill-tag">乐享</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">方法论</div>
+        <div class="skill-group-items">
+          <span class="skill-tag">MECE</span>
+          <span class="skill-tag">SCQA</span>
+          <span class="skill-tag">结论先行</span>
+          <span class="skill-tag">PLG/MLG/SLG</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 18. 关键沉淀 - wide ===== -->
+  <div class="card wide" style="background:linear-gradient(135deg,#f8faff 0%,#fff 100%)">
+    <div class="badge">关键沉淀</div>
+    <ul class="precip-list">
+      <li><strong>meeting-to-card</strong>：自由布局视觉规范 + 内容感知插画节点 + 金小喵IP形象，实现"会议纪要→知识卡片"全流程AI化</li>
+      <li><strong>case-panorama</strong>：KD品牌图标风全流程 + 线性描边设计规范 + 背景图去文字约束 + 数据框自适应宽度</li>
+      <li><strong>内容运营</strong>：从"经验驱动"到"标准驱动"流程标准化，多维表数据仪表盘 + 灵感库分类分级机制</li>
+      <li><strong>培训体系</strong>：新人学习地图SOP + 运营话术体系 + 案例手册标准化制作流程</li>
+    </ul>
+  </div>
+
+  <!-- ===== Footer ===== -->
+  <div class="footer">简历更新 · 2026年5月 · 邱星如 · 金山办公</div>
+
+</div>
+</div>
+</body>
+</html>
