@@ -234,6 +234,12 @@ body.no-anim .cursor-glow,body.no-anim .settings-toggle{display:none}
 body.no-anim .card{opacity:1 !important;transform:none !important;animation:none !important}
 body.no-anim .reveal-item{opacity:1 !important;transform:none !important;transition:none !important}
 body.no-anim .card::before{display:none}
+
+/* Hide all interactive buttons */
+.theme-toggle, .export-btn, .settings-toggle, .settings-panel, .drag-handle, .toast-save, .export-toast {
+  display: none !important;
+}
+
 </style>
 
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
