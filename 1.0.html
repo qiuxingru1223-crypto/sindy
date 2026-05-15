@@ -5,19 +5,104 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>邱星如 · 简历 · 19700271223</title>
 <style>
+/* ===== CSS Variables & Theme ===== */
+:root {
+  --bg: #f0f3f8;
+  --bg-card: #ffffff;
+  --bg-card-alt: #f8faff;
+  --bg-skill: #f8faff;
+  --border-skill: #eef2f8;
+  --text-primary: #1a1d23;
+  --text-secondary: #555555;
+  --text-tertiary: #888888;
+  --text-muted: #999999;
+  --text-label: #aaaaaa;
+  --brand: #1F69E0;
+  --brand-dark: #0d47a1;
+  --brand-light: #f0f6ff;
+  --border: rgba(0,0,0,.04);
+  --border-hover: rgba(31,105,224,.15);
+  --shadow: 0 2px 8px rgba(0,0,0,.04);
+  --shadow-hover: 0 12px 40px rgba(31,105,224,.10);
+  --shadow-chosen: 0 8px 32px rgba(31,105,224,.18);
+  --timeline-line: #e8ecf4;
+  --divider: #f0f3f8;
+  --dot: #c0c4cc;
+  --toast-bg: #1a1d23;
+  --toast-text: #ffffff;
+  --icon-color: #1F69E0;
+  --badge-gradient-start: #1F69E0;
+  --badge-gradient-end: #0d47a1;
+  --name-gradient-start: #1F69E0;
+  --name-gradient-end: #0d47a1;
+  --key-bg: linear-gradient(135deg, #f8faff 0%, #fff 100%);
+  --scrollbar-track: #f0f3f8;
+  --scrollbar-thumb: #c8cdd5;
+}
+[data-theme="dark"] {
+  --bg: #0f1117;
+  --bg-card: #1a1d28;
+  --bg-card-alt: #1e2130;
+  --bg-skill: #1e2130;
+  --border-skill: #2a2e3d;
+  --text-primary: #e8eaed;
+  --text-secondary: #a0a5b0;
+  --text-tertiary: #7a7f8a;
+  --text-muted: #6a6f7a;
+  --text-label: #5a5f6a;
+  --brand: #4d8ef7;
+  --brand-dark: #3a6fd8;
+  --brand-light: #1a2540;
+  --border: rgba(255,255,255,.06);
+  --border-hover: rgba(77,142,247,.25);
+  --shadow: 0 2px 8px rgba(0,0,0,.2);
+  --shadow-hover: 0 12px 40px rgba(77,142,247,.12);
+  --shadow-chosen: 0 8px 32px rgba(77,142,247,.2);
+  --timeline-line: #2a2e3d;
+  --divider: #2a2e3d;
+  --dot: #4a4f5a;
+  --toast-bg: #e8eaed;
+  --toast-text: #1a1d23;
+  --icon-color: #4d8ef7;
+  --badge-gradient-start: #4d8ef7;
+  --badge-gradient-end: #3a6fd8;
+  --name-gradient-start: #2a5cb8;
+  --name-gradient-end: #1a3a7a;
+  --key-bg: linear-gradient(135deg, #1e2130 0%, #1a1d28 100%);
+  --scrollbar-track: #1a1d28;
+  --scrollbar-thumb: #3a3f4a;
+}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--scrollbar-track)}
+::-webkit-scrollbar-thumb{background:var(--scrollbar-thumb);border-radius:3px}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{font-size:15px;scroll-behavior:smooth}
-body{font-family:"PingFang SC","Microsoft YaHei","Inter",sans-serif;background:#f0f3f8;color:#1a1d23;line-height:1.7;padding:24px}
+body{font-family:"PingFang SC","Microsoft YaHei","Inter",sans-serif;background:var(--bg);color:var(--text-primary);line-height:1.7;padding:24px;transition:background .4s,color .4s}
 .container{max-width:1120px;margin:0 auto}
+.theme-toggle{position:fixed;top:20px;right:20px;z-index:100;width:44px;height:44px;border-radius:50%;border:1px solid var(--border);background:var(--bg-card);cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow);transition:all .3s}
+.theme-toggle:hover{box-shadow:var(--shadow-hover);transform:scale(1.08)}
+.theme-toggle svg{width:20px;height:20px;color:var(--icon-color);transition:transform .4s}
+.theme-toggle:hover svg{transform:rotate(20deg)}
+.export-btn{position:fixed;top:72px;right:20px;z-index:100;width:44px;height:44px;border-radius:50%;border:1px solid var(--border);background:var(--bg-card);cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow);transition:all .3s}
+.export-btn:hover{box-shadow:var(--shadow-hover);transform:scale(1.08);border-color:var(--border-hover)}
+.export-btn svg{width:20px;height:20px;color:var(--icon-color);transition:transform .4s}
+.export-btn:hover svg{transform:scale(1.1)}
+.export-btn.loading{pointer-events:none;opacity:.6}
+.export-btn.loading svg{animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
 .bento{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;grid-auto-flow:dense}
-.card{background:#fff;border-radius:16px;padding:24px;transition:all .25s cubic-bezier(.22,.61,.36,1);box-shadow:0 2px 8px rgba(0,0,0,.04);border:1px solid rgba(0,0,0,.04);position:relative;overflow:hidden}
-.card:hover{box-shadow:0 12px 40px rgba(31,105,224,.10);transform:translateY(-3px);border-color:rgba(31,105,224,.15)}
-.badge{display:inline-block;font-size:.58rem;font-weight:700;letter-spacing:.1em;color:#fff;background:#1F69E0;padding:2px 12px;border-radius:20px;margin-bottom:12px;text-transform:uppercase}
-.wide{grid-column:span 2}
-.full{grid-column:1/-1}
-.name-card{background:linear-gradient(135deg,#1F69E0 0%,#0d47a1 100%);color:#fff;padding:24px 28px;display:flex;align-items:flex-start;gap:24px}
+.card{background:transparent;border-radius:16px;padding:24px;transition:all .3s cubic-bezier(.22,.61,.36,1);box-shadow:var(--shadow);border:none;position:relative;overflow:visible}
+.card:hover{box-shadow:var(--shadow-hover);transform:translateY(-3px);border-color:var(--border-hover)}
+.card{opacity:0;transform:translateY(24px);animation:cardIn .6s cubic-bezier(.22,.61,.36,1) forwards}
+.card:nth-child(1){animation-delay:.05s}.card:nth-child(2){animation-delay:.1s}.card:nth-child(3){animation-delay:.15s}.card:nth-child(4){animation-delay:.2s}.card:nth-child(5){animation-delay:.25s}.card:nth-child(6){animation-delay:.3s}.card:nth-child(7){animation-delay:.35s}.card:nth-child(8){animation-delay:.4s}.card:nth-child(9){animation-delay:.45s}.card:nth-child(10){animation-delay:.5s}.card:nth-child(11){animation-delay:.55s}.card:nth-child(12){animation-delay:.6s}
+@keyframes cardIn{to{opacity:1;transform:translateY(0)}}
+.badge{display:inline-flex;align-items:center;gap:6px;font-size:.58rem;font-weight:700;letter-spacing:.1em;color:#fff;background:linear-gradient(135deg,var(--badge-gradient-start),var(--badge-gradient-end));padding:3px 14px;border-radius:20px;margin-bottom:12px;text-transform:uppercase}
+.badge svg{width:12px;height:12px;flex-shrink:0}
+.wide{grid-column:span 2}.full{grid-column:1/-1}
+.name-card{background:linear-gradient(135deg,var(--name-gradient-start) 0%,var(--name-gradient-end) 100%);color:#fff;padding:24px 28px;display:flex;align-items:flex-start;gap:24px}
 .name-card .avatar-wrap{flex-shrink:0;padding-top:4px}
-.name-card .avatar{width:88px;height:88px;border-radius:50%;object-fit:cover;border:3px solid rgba(255,255,255,.4);display:block;box-shadow:0 4px 16px rgba(0,0,0,.15)}
+.name-card .avatar{width:88px;height:88px;border-radius:50%;object-fit:cover;border:3px solid rgba(255,255,255,.4);display:block;box-shadow:0 4px 16px rgba(0,0,0,.15);transition:transform .4s}
+.name-card:hover .avatar{transform:scale(1.05)}
 .name-card .name-content{flex:1;min-width:0}
 .name-card .name{font-size:2.4rem;font-weight:700;letter-spacing:-.01em;line-height:1.1;margin-bottom:4px}
 .name-card .sub{font-size:.85rem;opacity:.85;letter-spacing:.06em;margin-bottom:8px}
@@ -26,53 +111,137 @@ body{font-family:"PingFang SC","Microsoft YaHei","Inter",sans-serif;background:#
 .name-card .extra-line .label{opacity:.5;margin-right:4px}
 .name-card .deco{position:absolute;right:-30px;bottom:-30px;width:160px;height:160px;border-radius:50%;background:rgba(255,255,255,.04)}
 .name-card .deco2{position:absolute;right:60px;bottom:60px;width:80px;height:80px;border-radius:50%;background:rgba(255,255,255,.03)}
-@media(max-width:640px){.name-card{flex-direction:column;text-align:center;padding:20px;align-items:center}.name-card .avatar{width:72px;height:72px}}
-.info-card{display:flex;flex-wrap:wrap;align-content:center;gap:6px 24px;font-size:.76rem;color:#666;padding:20px 24px}
-.info-card .label{color:#aaa;margin-right:2px}
+.info-card{display:flex;flex-wrap:wrap;align-content:center;gap:6px 24px;font-size:.76rem;color:var(--text-secondary);padding:20px 24px}
+.info-card .label{color:var(--text-label);margin-right:2px}
 .info-card span{letter-spacing:.01em}
-.timeline-item{padding-left:18px;border-left:2px solid #e8ecf4;margin-bottom:16px;position:relative}
+.timeline-item{padding-left:18px;border-left:2px solid var(--timeline-line);margin-bottom:16px;position:relative}
 .timeline-item:last-child{margin-bottom:0}
-.timeline-item::before{content:"";position:absolute;left:-5px;top:6px;width:8px;height:8px;border-radius:50%;background:#1F69E0;border:2px solid #fff;box-shadow:0 0 0 2px #1F69E0}
-.timeline-item .period{font-size:.65rem;color:#1F69E0;font-weight:600;letter-spacing:.04em;margin-bottom:2px}
-.timeline-item .org{font-size:.92rem;font-weight:600;color:#1a1d23;margin-bottom:1px}
-.timeline-item .role{font-size:.76rem;color:#888;margin-bottom:4px}
-.detail-list{font-size:.76rem;color:#555;line-height:1.7}
-.dl-group{margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid #f0f3f8}
+.timeline-item::before{content:"";position:absolute;left:-5px;top:6px;width:8px;height:8px;border-radius:50%;background:var(--brand);border:2px solid var(--bg-card);box-shadow:0 0 0 2px var(--brand)}
+.timeline-item .period{font-size:.65rem;color:var(--brand);font-weight:600;letter-spacing:.04em;margin-bottom:2px}
+.timeline-item .org{font-size:.92rem;font-weight:600;color:var(--text-primary);margin-bottom:1px}
+.timeline-item .role{font-size:.76rem;color:var(--text-tertiary);margin-bottom:4px}
+.detail-list{font-size:.76rem;color:var(--text-secondary);line-height:1.7}
+.dl-group{margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid var(--divider)}
 .dl-group:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
 .dl-group ul{list-style:none;padding-left:12px}
 .dl-group li{position:relative;padding-left:16px;margin-bottom:3px}
-.dl-group li::before{content:"";position:absolute;left:0;top:8px;width:5px;height:5px;border-radius:50%;background:#1F69E0}
+.dl-group li::before{content:"";position:absolute;left:0;top:8px;width:5px;height:5px;border-radius:50%;background:var(--brand)}
 .skill-inner-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.skill-group{background:#f8faff;padding:12px 14px;border-radius:10px;border:1px solid #eef2f8}
-.skill-group-title{font-size:.78rem;font-weight:600;color:#1F69E0;margin-bottom:5px}
-.skill-group-items{font-size:.72rem;color:#555;line-height:1.6}
-.skill-tag{display:inline-block;font-size:.65rem;background:#f0f3f8;color:#555;padding:1px 8px;border-radius:4px;margin:2px 2px}
-.precip-list{font-size:.76rem;color:#555;line-height:1.7;list-style:none}
-.precip-list li{padding:8px 0 8px 20px;position:relative;border-bottom:1px solid #f0f3f8}
+.skill-group{background:var(--bg-skill);padding:12px 14px;border-radius:10px;border:1px solid var(--border-skill)}
+.skill-group-title{font-size:.78rem;font-weight:600;color:var(--brand);margin-bottom:5px}
+.skill-group-items{font-size:.72rem;color:var(--text-secondary);line-height:1.6}
+.skill-tag{display:inline-block;font-size:.65rem;background:var(--bg);color:var(--text-secondary);padding:1px 8px;border-radius:4px;margin:2px 2px;transition:all .2s;cursor:default}
+.skill-tag:hover{background:var(--brand-light);color:var(--brand)}
+.precip-list{font-size:.76rem;color:var(--text-secondary);line-height:1.7;list-style:none}
+.precip-list li{padding:8px 0 8px 20px;position:relative;border-bottom:1px solid var(--divider)}
 .precip-list li:last-child{border-bottom:none}
-.precip-list li::before{content:"→";position:absolute;left:0;color:#1F69E0;font-weight:600}
-.footer{grid-column:1/-1;text-align:center;font-size:.68rem;color:#bbb;padding:20px 0 8px;letter-spacing:.06em}
-@media(max-width:960px){.bento{grid-template-columns:repeat(2,1fr)}.name-card .tagline{max-width:100%}}
-@media(max-width:640px){body{padding:12px}.bento{grid-template-columns:1fr;gap:12px}.card{padding:18px}.wide{grid-column:span 1}.skill-inner-grid{grid-template-columns:1fr}}
-
-/* Drag */
+.precip-list li::before{content:"→";position:absolute;left:0;color:var(--brand);font-weight:600}
+.counter{display:inline-block;font-variant-numeric:tabular-nums;font-weight:700;color:var(--brand)}
+.footer{grid-column:1/-1;text-align:center;font-size:.68rem;color:var(--text-muted);padding:20px 0 8px;letter-spacing:.06em}
+@media(max-width:960px){.bento{grid-template-columns:repeat(2,1fr)}.name-card .tagline{max-width:100%}.theme-toggle,.export-btn{top:auto;bottom:20px;right:20px}.export-btn{bottom:70px}}
+@media(max-width:640px){body{padding:12px}.bento{grid-template-columns:1fr;gap:12px}.card{padding:18px}.wide{grid-column:span 1}.skill-inner-grid{grid-template-columns:1fr}.name-card{flex-direction:column;text-align:center;padding:20px;align-items:center}.name-card .avatar{width:72px;height:72px}}
 .card .drag-handle{position:absolute;top:8px;right:10px;cursor:grab;z-index:5;display:flex;flex-direction:column;gap:2px;padding:4px;opacity:0;transition:opacity .2s;border-radius:6px}
 .card:hover .drag-handle{opacity:1}
-.card .drag-handle:hover{background:rgba(0,0,0,.04)}
+.card .drag-handle:hover{background:rgba(128,128,128,.08)}
 .card .drag-handle:active{cursor:grabbing}
-.card .drag-handle span{display:block;width:14px;height:2px;background:#c0c4cc;border-radius:2px}
-.card.sortable-ghost{opacity:.35;border:2px dashed #1F69E0 !important;background:#f0f6ff !important;transform:none !important}
-.card.sortable-chosen{box-shadow:0 8px 32px rgba(31,105,224,.18) !important;border-color:#1F69E0 !important;transform:rotate(.5deg) !important}
+.card .drag-handle span{display:block;width:14px;height:2px;background:var(--dot);border-radius:2px}
+.card.sortable-ghost{opacity:.35;border:2px dashed var(--brand) !important;background:var(--brand-light) !important;transform:none !important}
+.card.sortable-chosen{box-shadow:var(--shadow-chosen) !important;border-color:var(--brand) !important;transform:rotate(.5deg) !important}
 .card.sortable-drag{opacity:.9 !important}
-.toast-save{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#1a1d23;color:#fff;padding:8px 20px;border-radius:8px;font-size:13px;z-index:999;opacity:0;transition:opacity .3s;pointer-events:none}
+.toast-save{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--toast-bg);color:var(--toast-text);padding:8px 20px;border-radius:8px;font-size:13px;z-index:999;opacity:0;transition:opacity .3s;pointer-events:none}
 .toast-save.show{opacity:1}
+@media print{
+  *{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important;color-adjust:exact !important}
+  body{background:#fff !important;padding:0 !important;font-size:11px !important}
+  .container{max-width:100% !important}
+  .theme-toggle,.export-btn,.drag-handle,.toast-save{display:none !important}
+  .bento{display:block !important;gap:0 !important}
+  .card{break-inside:avoid !important;box-shadow:none !important;border:1px solid #e0e0e0 !important;margin-bottom:10px !important;page-break-inside:avoid !important;opacity:1 !important;transform:none !important;animation:none !important;border-radius:8px !important}
+  .wide,.full{grid-column:span 1 !important}
+  .name-card{border-radius:8px !important}
+  .footer{display:none !important}
+  @page{margin:12mm;size:A4}
+}
+
+/* ===== Cursor Glow ===== */
+.cursor-glow{position:fixed;width:320px;height:320px;border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);opacity:0;transition:opacity .3s;will-change:transform}
+.cursor-glow.active{opacity:1}
+.cursor-glow.light{background:radial-gradient(circle,rgba(31,105,224,.10) 0%,rgba(31,105,224,.03) 40%,transparent 70%)}
+.cursor-glow.dark{background:radial-gradient(circle,rgba(77,142,247,.15) 0%,rgba(77,142,247,.05) 40%,transparent 70%)}
+
+/* ===== Staggered Reveal ===== */
+.reveal-item{opacity:0;transform:translateY(16px);transition:opacity .5s cubic-bezier(.22,.61,.36,1),transform .5s cubic-bezier(.22,.61,.36,1)}
+.reveal-item.revealed{opacity:1;transform:translateY(0)}
+.reveal-item:nth-child(1){transition-delay:.0s}
+.reveal-item:nth-child(2){transition-delay:.06s}
+.reveal-item:nth-child(3){transition-delay:.12s}
+.reveal-item:nth-child(4){transition-delay:.18s}
+.reveal-item:nth-child(5){transition-delay:.24s}
+.reveal-item:nth-child(6){transition-delay:.30s}
+.reveal-item:nth-child(7){transition-delay:.36s}
+.reveal-item:nth-child(8){transition-delay:.42s}
+.reveal-item:nth-child(9){transition-delay:.48s}
+.reveal-item:nth-child(10){transition-delay:.54s}
+
+/* ===== Typewriter ===== */
+.typewriter-cursor{display:inline-block;width:2px;height:1.1em;background:var(--brand);margin-left:2px;vertical-align:text-bottom;animation:blink .8s step-end infinite}
+@keyframes blink{50%{opacity:0}}
+
+/* ===== Glow Border ===== */
+@property --glow-angle{syntax:'<angle>';initial-value:0deg;inherits:false}
+.card{position:relative;z-index:0}
+.card::before{content:'';position:absolute;inset:-4px;border-radius:20px;background:conic-gradient(from var(--glow-angle),transparent 0%,rgba(130,218,233,.8) 10%,rgba(157,192,250,.8) 30%,rgba(197,173,250,.8) 50%,rgba(157,192,250,.8) 70%,rgba(130,218,233,.8) 90%,transparent 100%);z-index:-2;opacity:0;transition:opacity .4s;animation:borderSpin 4s linear infinite}
+.card::after{content:'';position:absolute;inset:0;border-radius:16px;background:var(--bg-card);border:1px solid var(--border);z-index:-1}
+.name-card::after{background:linear-gradient(135deg,var(--name-gradient-start) 0%,var(--name-gradient-end) 100%);border:none}
+.card:hover::before{opacity:1}
+.card>.badge,.card>.skill-inner-grid,.card>.detail-list,.card>.timeline-item,.card>.precip-list,.card>.name-content,.card>div,.card>ul{position:relative;z-index:1}
+@keyframes borderSpin{from{--glow-angle:0deg}to{--glow-angle:360deg}}
+body.no-glow .card::before{display:none}
+
+
+/* ===== Export Button ===== */
+.export-btn{position:fixed;top:72px;right:20px;z-index:100;padding:8px 16px;border-radius:22px;border:1px solid var(--border);background:var(--bg-card);color:var(--text-primary);cursor:pointer;font-size:.72rem;font-weight:600;box-shadow:var(--shadow);transition:all .3s;display:flex;align-items:center;gap:6px;white-space:nowrap}
+.export-btn:hover{box-shadow:var(--shadow-hover);border-color:var(--border-hover);color:var(--brand)}
+.export-btn svg{width:14px;height:14px;flex-shrink:0}
+.export-btn.loading{pointer-events:none;opacity:.6}
+.export-btn.loading svg{animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.export-toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--toast-bg);color:var(--toast-text);padding:10px 24px;border-radius:10px;font-size:.8rem;z-index:9999;opacity:0;transition:opacity .3s;pointer-events:none;display:flex;align-items:center;gap:8px}
+.export-toast.show{opacity:1}
+.export-toast svg{width:16px;height:16px;flex-shrink:0}
+/* ===== Settings Panel ===== */
+.settings-toggle{position:fixed;top:124px;right:20px;z-index:100;width:44px;height:44px;border-radius:50%;border:1px solid var(--border);background:var(--bg-card);cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow);transition:all .3s}
+.settings-toggle:hover{box-shadow:var(--shadow-hover);transform:scale(1.08)}
+.settings-toggle svg{width:20px;height:20px;color:var(--icon-color);transition:transform .4s}
+.settings-toggle:hover svg{transform:rotate(60deg)}
+.settings-panel{position:fixed;top:176px;right:20px;z-index:100;width:220px;background:var(--bg-card);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow-hover);padding:16px;opacity:0;transform:translateY(-8px);pointer-events:none;transition:all .3s}
+.settings-panel.open{opacity:1;transform:translateY(0);pointer-events:auto}
+.settings-panel h4{font-size:.72rem;color:var(--text-muted);margin-bottom:10px;letter-spacing:.08em;text-transform:uppercase}
+.setting-row{display:flex;align-items:center;justify-content:space-between;padding:6px 0}
+.setting-row span{font-size:.76rem;color:var(--text-primary)}
+.toggle-switch{position:relative;width:36px;height:20px;background:var(--divider);border-radius:10px;cursor:pointer;transition:background .3s}
+.toggle-switch.on{background:var(--brand)}
+.toggle-switch::after{content:'';position:absolute;top:2px;left:2px;width:16px;height:16px;background:#fff;border-radius:50%;transition:transform .3s;box-shadow:0 1px 3px rgba(0,0,0,.15)}
+.toggle-switch.on::after{transform:translateX(16px)}
+
+/* ===== Export Toast ===== */
+.export-toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--toast-bg);color:var(--toast-text);padding:10px 24px;border-radius:10px;font-size:.8rem;z-index:9999;opacity:0;transition:opacity .3s;pointer-events:none;display:flex;align-items:center;gap:8px}
+.export-toast.show{opacity:1}
+.export-toast svg{width:16px;height:16px;flex-shrink:0}
+
+/* ===== No Animation Mode ===== */
+body.no-anim .cursor-glow,body.no-anim .settings-toggle{display:none}
+body.no-anim .card{opacity:1 !important;transform:none !important;animation:none !important}
+body.no-anim .reveal-item{opacity:1 !important;transform:none !important;transition:none !important}
+body.no-anim .card::before{display:none}
 </style>
+
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
 </head>
 <body>
 <div class="container">
-<div class="bento">
-
-  <!-- 1. 姓名品牌卡 + 头像 -->
+<div class="bento"><!-- 1. 姓名品牌卡 + 头像 -->
   <div class="card name-card wide">
     <div class="deco"></div>
     <div class="deco2"></div>
@@ -82,23 +251,63 @@ body{font-family:"PingFang SC","Microsoft YaHei","Inter",sans-serif;background:#
     <div class="name-content">
       <div class="name">邱星如</div>
       <div class="sub">培训专员 | 知识运营 | AI技能创新</div>
-      <div class="tagline">5年+培训与内容运营经验，擅长AI工具落地、内容体系搭建与数据驱动运营。</div>
+      <div class="tagline"><span class="counter" data-target="6">6</span>年+培训和知识运营经验，擅长AI工具，懂构建AI Skill，精通办公软件，工作认真负责。</div>
       <div class="extra-line"><span class="label">重点经历</span>培训专员 · 课程内容开发 · 内训平台搭建 · 咨询公司项目制培训跟进</div>
-      <div class="extra-line" style="margin-top:3px"><span class="label">兴趣爱好</span>乒乓球 · 羽毛球 · 游泳 · 爵士舞基础</div>
+      
     </div>
   </div>
 
-  <!-- 2. 信息条 -->
-  <div class="card info-card">
-    <span><span class="label">教育</span>国立华侨大学 · 国际经济与贸易</span>
-    <span><span class="label">英语</span>CET-6</span>
-    <span><span class="label">认证</span>办公软件KOS三科高级认证（PPT/Excel/Word）</span>
-    <span><span class="label">证书</span>SAC从业 · 驾照C照</span>
+<!-- 5. 关键沉淀 -->
+  <div class="card wide" style="background:linear-gradient(135deg,#f8faff 0%,#fff 100%)">
+    <div class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>关键沉淀</div>
+    <ul class="precip-list">
+      <li><strong>AI探索：</strong> AI创作脚本、AI生图、AI辅助创作视频</li>
+      <li><strong>内容运营：</strong> 从"经验驱动"到"标准驱动"，多维表数据仪表盘 + 灵感库分级</li>
+      <li><strong>培训相关：</strong> 开发讲授过5门课；新人学习地图SOP；运营话术体系；案例手册标准化</li>
+    </ul>
   </div>
 
-  <!-- 3. 能力光谱 -->
+<!-- 4. 职业时序 -->
+  <div class="card" style="padding:24px">
+    <div class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>职业时序</div>
+    <div class="timeline-item">
+      <div class="period">2023.04 — 至今</div>
+      <div class="org">金山办公</div>
+      <div class="role">知识内容运营 · AI技能创新</div>
+    </div>
+    <div class="timeline-item">
+      <div class="period">2021 — 2023.03</div>
+      <div class="org">广州点赞广告策划</div>
+      <div class="role">培训专员</div>
+    </div>
+    <div class="timeline-item">
+      <div class="period">2019 — 2021</div>
+      <div class="org">华夏智亿 / 达人咨询 2019-2021</div>
+      <div class="role">助理咨询师 · 培训师</div>
+    </div>
+    <div class="timeline-item">
+      <div class="period">2019 实习</div>
+      <div class="org">安踏体育 · FILA</div>
+      <div class="role">管培生</div>
+    </div>
+  </div>
+
+<!-- 2. 基础信息 -->
+  <div class="card" style="padding:24px">
+    <div class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>基础信息</div>
+    <div style="font-size:.76rem;color:#555;line-height:2">
+      <div style="margin-bottom:8px"><span style="color:#999;margin-right:4px">教育</span>国立华侨大学 · 国际经济与贸易</div>
+      <div style="margin-bottom:8px"><span style="color:#999;margin-right:4px">学位</span>全日制本科经济学学士</div>
+      <div style="margin-bottom:8px"><span style="color:#999;margin-right:4px">英语</span>CET-6</div>
+      <div style="margin-bottom:8px"><span style="color:#999;margin-right:4px">认证</span>办公软件KOS三科高级认证（PPT/Excel/Word）</div>
+      <div style="margin-bottom:8px"><span style="color:#999;margin-right:4px">证书</span>SAC从业 · 驾照C照</div>
+      <div><span style="color:#999;margin-right:4px">兴趣爱好</span>乒乓球 · 下厨房 · 生活旅行Vlog · 羽毛球 · 游泳 · 爵士舞基础 · 业余K歌</div>
+    </div>
+  </div>
+
+<!-- 3. 能力光谱 -->
   <div class="card wide">
-    <div class="badge">能力光谱</div>
+    <div class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>能力光谱</div>
     <div class="skill-inner-grid">
       <div class="skill-group">
         <div class="skill-group-title">AI能力</div>
@@ -133,56 +342,21 @@ body{font-family:"PingFang SC","Microsoft YaHei","Inter",sans-serif;background:#
     </div>
   </div>
 
-  <!-- 4. 职业时序 -->
-  <div class="card" style="padding:24px">
-    <div class="badge">职业时序</div>
-    <div class="timeline-item">
-      <div class="period">2023.04 — 至今</div>
-      <div class="org">金山办公</div>
-      <div class="role">知识内容运营 · AI技能创新</div>
-    </div>
-    <div class="timeline-item">
-      <div class="period">2021 — 2023.03</div>
-      <div class="org">广州点赞广告策划</div>
-      <div class="role">培训专员</div>
-    </div>
-    <div class="timeline-item">
-      <div class="period">2019 — 2021</div>
-      <div class="org">华夏智亿 / 达人咨询</div>
-      <div class="role">助理咨询师 · 培训师</div>
-    </div>
-    <div class="timeline-item">
-      <div class="period">2019 实习</div>
-      <div class="org">安踏体育 · FILA</div>
-      <div class="role">管培生</div>
-    </div>
-  </div>
-
-  <!-- 5. 关键沉淀 -->
-  <div class="card wide" style="background:linear-gradient(135deg,#f8faff 0%,#fff 100%)">
-    <div class="badge">关键沉淀</div>
-    <ul class="precip-list">
-      <li><strong>AI探索：</strong> AI创作脚本、AI生图、AI辅助创作视频</li>
-      <li><strong>内容运营：</strong> 从"经验驱动"到"标准驱动"，多维表数据仪表盘 + 灵感库分级</li>
-      <li><strong>培训体系：</strong> 新人学习地图SOP + 运营话术体系 + 案例手册标准化</li>
-    </ul>
-  </div>
-
-  <!-- 6. 核心优势 -->
+<!-- 6. 核心优势 -->
   <div class="card full">
-    <div class="badge">核心优势</div>
+    <div class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>核心优势</div>
     <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:4px">
       <div style="border:none;padding:0">
         <strong>AI创新实践</strong><br>
-        <span style="font-size:.72rem;color:#666">从0到1构建2个AI Agent Skill，评测10+款AI工具</span>
+        <span style="font-size:.72rem;color:#666">从0到1构建<span class="counter" data-target="2">2</span>个AI Agent Skill，评测<span class="counter" data-target="10">10+</span>款AI工具</span>
       </div>
       <div style="border:none;padding:0">
         <strong>内容运营增长</strong><br>
-        <span style="font-size:.72rem;color:#666">内容发布121篇，直播运营25场，熟悉发布平台和教学类直播流程</span>
+        <span style="font-size:.72rem;color:#666">内容发布<span class="counter" data-target="121">121</span>篇，直播运营<span class="counter" data-target="25">25</span>场，熟悉发布平台和教学类直播流程</span>
       </div>
       <div style="border:none;padding:0">
         <strong>培训体系搭建</strong><br>
-        <span style="font-size:.72rem;color:#666">主导新人培训体系从0到1，上线126门视频课</span>
+        <span style="font-size:.72rem;color:#666">主导新人培训体系从0到1，上线<span class="counter" data-target="126">126</span>门视频课</span>
       </div>
       <div style="border:none;padding:0">
         <strong>产品深度</strong><br>
@@ -191,30 +365,30 @@ body{font-family:"PingFang SC","Microsoft YaHei","Inter",sans-serif;background:#
     </div>
   </div>
 
-  <!-- 7. 金山办公 · AI技能创新 -->
+<!-- 7. 金山办公 · AI技能创新 -->
   <div class="card wide">
-    <div class="badge">金山办公 · AI技能创新 · 2026至今</div>
+    <div class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>金山办公 · AI技能创新 · 2026至今</div>
     <div class="detail-list">
       <div class="dl-group">
         <ul>
           <li>从0到1构建 meeting-to-card AI Agent Skill：多风格知识卡片生成，植入内容感知插画，引入IP定制化</li>
           <li>主导 case-panorama 场景全景图 Skill：整合KD图标库Pro设计规范，支持多卡/单页双模式</li>
-          <li>系统性评测 10+款 AI工具，对比8款知识卡片效果，总结2条最佳生成路径</li>
+          <li>系统性评测 <span class="counter" data-target="10">10+</span>款 AI工具，对比8款知识卡片效果，总结2条最佳生成路径</li>
         </ul>
       </div>
     </div>
   </div>
 
-  <!-- 8. 金山办公 · 培训数据与内容运营 -->
+<!-- 8. 金山办公 · 培训数据与内容运营 -->
   <div class="card wide">
-    <div class="badge">金山办公 · 培训数据与内容运营 · 2023-2025</div>
+    <div class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>金山办公 · 培训数据与内容运营 · 2023-2025</div>
     <div class="detail-list">
       <div class="dl-group">
         <ul>
-          <li>从0到1搭建多平台内容运营体系，从"经验驱动"到"标准驱动"转型，年发布121篇内容</li>
-          <li>平台增长：视频号粉丝5670（曝光33万+）· B站3383（曝光14万+）</li>
-          <li>直播运营：全年辅助开播25场，优化前宣策略、中场互动和数据归档</li>
-          <li>知识运营：官网221篇视频封面制作 · 122条灵感摘录库 · 多维表+自动化发布流程</li>
+          <li>从0到1搭建多平台内容运营体系，从"经验驱动"到"标准驱动"转型，年发布<span class="counter" data-target="121">121</span>篇内容</li>
+          <li>平台增长：视频号粉丝<span class="counter" data-target="5670">5670</span>（曝光<span class="counter" data-target="330000">33万</span>+）· B站<span class="counter" data-target="3383">3383</span>（曝光<span class="counter" data-target="140000">14万</span>+）</li>
+          <li>直播运营：全年辅助开播<span class="counter" data-target="25">25</span>场，优化前宣策略、中场互动和数据归档</li>
+          <li>知识运营：官网<span class="counter" data-target="221">221</span>篇视频封面制作 · <span class="counter" data-target="122">122</span>条灵感摘录库 · 多维表+自动化发布流程</li>
           <li>深入钻研WPS全线产品，包括智能表单、多维表格等</li>
           <li>审核大量课件和视频，积累图文视频创作审美</li>
           <li>培训数据表维护，内部讲师满意度反馈表、问卷优化，数据统计与分析</li>
@@ -223,38 +397,38 @@ body{font-family:"PingFang SC","Microsoft YaHei","Inter",sans-serif;background:#
     </div>
   </div>
 
-  <!-- 9. 广州点赞 -->
+<!-- 9. 广州点赞 -->
   <div class="card wide">
-    <div class="badge">广州点赞广告 · 培训专员 2021-2023</div>
+    <div class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>广州点赞广告 · 培训专员 2021-2023</div>
     <div class="detail-list">
       <div class="dl-group">
         <ul>
-          <li><strong>新人培训体系搭建：</strong> 新兵训练营4期，独立开发课件，共创运营/销售新人学习地图（52项任务）</li>
-          <li><strong>知识平台从0到1：</strong> 搭建乐享平台，上线视频课程126门</li>
-          <li><strong>案例沉淀：</strong> 《外卖案例手册》（100家）·《点评&笔记案例手册》（76家）· 编制《运营进阶话术3.0》</li>
+          <li><strong>新人培训体系搭建：</strong> 新兵训练营4期，独立开发课件，共创运营/销售新人学习地图（<span class="counter" data-target="52">52</span>项任务）</li>
+          <li><strong>知识平台从0到1：</strong> 搭建乐享平台，上线视频课程<span class="counter" data-target="126">126</span>门</li>
+          <li><strong>案例沉淀：</strong> 《外卖案例手册》（<span class="counter" data-target="100">100</span>家）·《点评&笔记案例手册》（<span class="counter" data-target="76">76</span>家）· 编制《运营进阶话术3.0》</li>
           <li><strong>活动组织：</strong> 笔记话术PK挑战赛 · 四周年庆典 · 官方宣传片 · 团建活动</li>
         </ul>
       </div>
     </div>
   </div>
 
-  <!-- 10. 华夏智亿 -->
+<!-- 10. 华夏智亿 -->
   <div class="card">
-    <div class="badge">华夏智亿 / 达人咨询</div>
+    <div class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>华夏智亿 / 达人咨询 2019-2021</div>
     <div class="detail-list">
       <div class="dl-group" style="border:none">
         <ul>
-          <li>主持线下培训班7个 · 线上直播课10余场</li>
-          <li>撰写方案约24个 · 标书约7个</li>
-          <li>7个员工思想动态调研项目 · 出差覆盖8省</li>
+          <li>主持线下培训班<span class="counter" data-target="7">7</span>个 · 线上直播课<span class="counter" data-target="10">10+</span>场</li>
+          <li>撰写方案约<span class="counter" data-target="24">24</span>个 · 标书约<span class="counter" data-target="7">7</span>个</li>
+          <li>7个员工思想动态调研项目 · 出差覆盖<span class="counter" data-target="8">8</span>省</li>
         </ul>
       </div>
     </div>
   </div>
 
-  <!-- 11. 其他经历 -->
+<!-- 11. 其他经历 -->
   <div class="card">
-    <div class="badge">其他经历</div>
+    <div class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>其他经历</div>
     <div class="detail-list">
       <div class="dl-group" style="border-bottom:none">
         <div style="font-weight:600;color:#1a1d23;font-size:.78rem;margin-bottom:4px">安踏体育 · FILA 管培生（实习）</div>
@@ -268,58 +442,463 @@ body{font-family:"PingFang SC","Microsoft YaHei","Inter",sans-serif;background:#
           <li>班级生活委员</li>
         </ul>
       </div>
-    </div>
-  </div>
+    </div></div>
 
   <div class="footer">简历更新 · 2026年5月 · 邱星如 · 金山办公</div>
 
 </div>
 </div>
 
-<!-- Drag & Sort -->
-<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.6/Sortable.min.js"></script>
-<div class="toast-save" id="toastSave">顺序已自动保存</div>
+
+
+<!-- Cursor Glow -->
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<!-- Theme Toggle -->
+<button class="theme-toggle" id="themeToggle" title="切换主题" aria-label="切换暗黑模式">
+  <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+  </svg>
+</button>
+
+
+<!-- Export PDF Button -->
+<button class="export-btn" id="exportPdf" title="导出A4 PDF" aria-label="导出PDF">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+</button>
+
+<!-- Export Toast -->
+<div class="export-toast" id="exportToast">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+  <span id="exportToastText">导出成功</span>
+</div>
+<!-- Settings Toggle -->
+<button class="settings-toggle" id="settingsToggle" title="动画设置" aria-label="动画设置">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+</button>
+
+<!-- Settings Panel -->
+<div class="settings-panel" id="settingsPanel">
+  <h4>动画设置</h4>
+  <div class="setting-row"><span>鼠标光晕</span><div class="toggle-switch on" data-key="glow"></div></div>
+  <div class="setting-row"><span>流光边框</span><div class="toggle-switch on" data-key="glowBorder"></div></div>
+  <div class="setting-row"><span>打字机效果</span><div class="toggle-switch on" data-key="typewriter"></div></div>
+  <div class="setting-row"><span>错峰动画</span><div class="toggle-switch on" data-key="stagger"></div></div>
+</div>
+
+<!-- Main JavaScript -->
 <script>
 (function(){
-  var bento = document.querySelector('.bento');
-  try{
-    var saved = localStorage.getItem('resume_card_order');
-    if(saved){
-      var order = JSON.parse(saved);
-      var cards = bento.querySelectorAll(':scope > .card:not(.footer)');
-      var footer = bento.querySelector('.footer');
-      var map = {};
-      cards.forEach(function(c){ map[c.querySelector('.badge') ? c.querySelector('.badge').textContent.trim() : 'name'] = c });
-      order.forEach(function(key){ if(map[key]) bento.appendChild(map[key]); });
-      if(footer) bento.appendChild(footer);
+  'use strict';
+
+  // ===== Settings State =====
+  var settings = {
+    glow: true,
+    glowBorder: true,
+    typewriter: true,
+    stagger: true
+  };
+
+  // Load settings
+  try {
+    var saved = localStorage.getItem('resume_settings');
+    if (saved) {
+      var parsed = JSON.parse(saved);
+      for (var k in parsed) { if (settings.hasOwnProperty(k)) settings[k] = parsed[k]; }
     }
-  }catch(e){}
-  new Sortable(bento, {
-    handle: '.drag-handle', animation: 250, easing: 'cubic-bezier(.22,.61,.36,1)',
-    ghostClass: 'sortable-ghost', chosenClass: 'sortable-chosen', dragClass: 'sortable-drag',
-    filter: '.footer',
-    onEnd: function(){
-      var cards = bento.querySelectorAll(':scope > .card:not(.footer)');
-      var order = [];
-      cards.forEach(function(c){
-        var badge = c.querySelector('.badge');
-        order.push(badge ? badge.textContent.trim() : 'name');
+  } catch(e) {}
+
+  function saveSettings() {
+    try { localStorage.setItem('resume_settings', JSON.stringify(settings)); } catch(e) {}
+  }
+
+  function applySettings() {
+    // Glow
+    var glowEl = document.getElementById('cursorGlow');
+    if (glowEl) glowEl.style.display = settings.glow ? '' : 'none';
+
+    // Glow Border (关闭时完全隐藏，开启时hover触发)
+    if (!settings.glowBorder) {
+      document.body.classList.add('no-glow');
+    } else {
+      document.body.classList.remove('no-glow');
+    }
+
+    // No animation mode
+    var anyDisabled = !settings.glow || !settings.glowBorder || !settings.typewriter || !settings.stagger;
+    // We don't use no-anim class for partial, only if all disabled
+    var allDisabled = !settings.glow && !settings.glowBorder && !settings.typewriter && !settings.stagger;
+    if (allDisabled) document.body.classList.add('no-anim');
+    else document.body.classList.remove('no-anim');
+  }
+
+  // ===== Settings Panel =====
+  var settingsToggle = document.getElementById('settingsToggle');
+  var settingsPanel = document.getElementById('settingsPanel');
+
+  settingsToggle.addEventListener('click', function() {
+    settingsPanel.classList.toggle('open');
+  });
+
+  // Close panel on outside click
+  document.addEventListener('click', function(e) {
+    if (!settingsPanel.contains(e.target) && e.target !== settingsToggle && !settingsToggle.contains(e.target)) {
+      settingsPanel.classList.remove('open');
+    }
+  });
+
+  // Toggle switches
+  var switches = settingsPanel.querySelectorAll('.toggle-switch');
+  switches.forEach(function(sw) {
+    var key = sw.getAttribute('data-key');
+    if (!settings[key]) sw.classList.remove('on');
+    sw.addEventListener('click', function() {
+      settings[key] = !settings[key];
+      sw.classList.toggle('on', settings[key]);
+      saveSettings();
+      applySettings();
+      // Re-init typewriter if enabled
+      if (key === 'typewriter' && settings[key]) initTypewriter();
+      // Re-init stagger if enabled
+      if (key === 'stagger' && settings[key]) initStagger();
+    });
+  });
+
+  applySettings();
+
+  // ===== Theme Toggle =====
+  var toggle = document.getElementById('themeToggle');
+  var icon = document.getElementById('themeIcon');
+  var sunPath = '<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>';
+  var moonPath = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+
+  function setTheme(dark) {
+    document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+    icon.innerHTML = dark ? moonPath : sunPath;
+    var glowEl = document.getElementById('cursorGlow');
+    if (glowEl) {
+      glowEl.classList.remove('light', 'dark');
+      glowEl.classList.add(dark ? 'dark' : 'light');
+    }
+    try { localStorage.setItem('resume_theme', dark ? 'dark' : 'light'); } catch(e) {}
+  }
+
+  try {
+    var savedTheme = localStorage.getItem('resume_theme');
+    if (savedTheme === 'dark') setTheme(true);
+  } catch(e) {}
+
+  toggle.addEventListener('click', function() {
+    var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    setTheme(!isDark);
+  });
+
+  // ===== Cursor Glow =====
+  var cursorGlow = document.getElementById('cursorGlow');
+  var glowX = 0, glowY = 0, currentX = 0, currentY = 0;
+  var raf = null;
+
+  function updateGlow() {
+    currentX += (glowX - currentX) * 0.15;
+    currentY += (glowY - currentY) * 0.15;
+    cursorGlow.style.transform = 'translate(' + currentX + 'px,' + currentY + 'px) translate(-50%,-50%)';
+    raf = requestAnimationFrame(updateGlow);
+  }
+
+  document.addEventListener('mousemove', function(e) {
+    glowX = e.clientX;
+    glowY = e.clientY;
+    if (!cursorGlow.classList.contains('active')) {
+      cursorGlow.classList.add('active');
+    }
+    if (!raf) updateGlow();
+  });
+
+  document.addEventListener('mouseleave', function() {
+    cursorGlow.classList.remove('active');
+  });
+
+  // ===== Typewriter Effect =====
+  var typewriterDone = false;
+
+  function initTypewriter() {
+    if (typewriterDone || !settings.typewriter) return;
+
+    var targets = [
+      { selector: '.name-card .sub', speed: 50 },
+      { selector: '.name-card .tagline', speed: 40 }
+    ];
+
+    targets.forEach(function(cfg) {
+      var el = document.querySelector(cfg.selector);
+      if (!el) return;
+      var text = el.textContent.trim();
+      if (!text) return;
+      el.textContent = '';
+      el.style.visibility = 'visible';
+
+      var i = 0;
+      var cursor = document.createElement('span');
+      cursor.className = 'typewriter-cursor';
+      el.appendChild(cursor);
+
+      function type() {
+        if (i < text.length) {
+          var ch = text.charAt(i);
+          var node = document.createTextNode(ch);
+          el.insertBefore(node, cursor);
+          i++;
+          var delay = cfg.speed;
+          if ('，。！？、；：,.!?;:'.indexOf(ch) >= 0) delay = 150;
+          setTimeout(type, delay);
+        } else {
+          setTimeout(function() {
+            if (cursor.parentNode) cursor.parentNode.removeChild(cursor);
+          }, 1500);
+        }
+      }
+
+      setTimeout(type, 600);
+    });
+
+    typewriterDone = true;
+  }
+
+  // ===== Staggered Reveal =====
+  var staggerObserver = null;
+
+  function initStagger() {
+    if (!settings.stagger) return;
+
+    // Mark reveal items
+    var selectors = [
+      '.timeline-item',
+      '.dl-group li',
+      '.skill-group',
+      '.precip-list li',
+      '.core-adv-item'
+    ];
+
+    selectors.forEach(function(sel) {
+      document.querySelectorAll(sel).forEach(function(el) {
+        if (!el.classList.contains('reveal-item')) {
+          el.classList.add('reveal-item');
+        }
       });
-      try{ localStorage.setItem('resume_card_order', JSON.stringify(order)); }catch(e){}
-      var toast = document.getElementById('toastSave');
-      toast.classList.add('show');
-      clearTimeout(toast._timer);
-      toast._timer = setTimeout(function(){ toast.classList.remove('show'); }, 1500);
+    });
+
+    // Observe cards
+    if (staggerObserver) staggerObserver.disconnect();
+
+    staggerObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          var items = entry.target.querySelectorAll('.reveal-item');
+          items.forEach(function(item) {
+            item.classList.add('revealed');
+          });
+          staggerObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.card').forEach(function(card) {
+      staggerObserver.observe(card);
+    });
+  }
+
+
+  // ===== Counter Animation =====
+  var counters = document.querySelectorAll('.counter');
+  var counterAnimated = new Set();
+
+  function animateCounter(el) {
+    if (counterAnimated.has(el)) return;
+    counterAnimated.add(el);
+    var target = parseInt(el.getAttribute('data-target'), 10);
+    var original = el.textContent;
+    var suffix = original.replace(/[0-9,]/g, '');
+    var duration = 1500;
+    var start = null;
+    function step(ts) {
+      if (!start) start = ts;
+      var progress = Math.min((ts - start) / duration, 1);
+      var ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+      var current = Math.floor(ease * target);
+      el.textContent = current.toLocaleString() + suffix;
+      if (progress < 1) requestAnimationFrame(step);
+      else el.textContent = original;
     }
+    requestAnimationFrame(step);
+  }
+
+  if ('IntersectionObserver' in window) {
+    var counterObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          animateCounter(entry.target);
+          counterObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    counters.forEach(function(c) { counterObserver.observe(c); });
+  } else {
+    counters.forEach(function(c) { animateCounter(c); });
+  }
+
+
+  // ===== Export PDF =====
+  var exportToast = document.getElementById('exportToast');
+  var exportToastText = document.getElementById('exportToastText');
+
+  function showExportToast(msg, duration) {
+    exportToastText.textContent = msg;
+    exportToast.classList.add('show');
+    clearTimeout(exportToast._timer);
+    exportToast._timer = setTimeout(function() { exportToast.classList.remove('show'); }, duration || 3000);
+  }
+
+  function setExportLoading(btn, loading) {
+    if (loading) {
+      btn.classList.add('loading');
+    } else {
+      btn.classList.remove('loading');
+    }
+  }
+
+  document.getElementById('exportPdf').addEventListener('click', function() {
+    var btn = this;
+    setExportLoading(btn, true);
+
+    // Hide dynamic elements
+    var hideIds = ['cursorGlow','themeToggle','exportPdf','settingsToggle','settingsPanel','exportToast','toastSave'];
+    hideIds.forEach(function(id){ var el=document.getElementById(id); if(el) el.style.display='none'; });
+    document.querySelectorAll('.drag-handle').forEach(function(el){ el.style.display='none'; });
+
+    // Temporarily disable glow borders and animations for clean capture
+    document.body.classList.add('no-glow');
+    var cards = document.querySelectorAll('.card');
+    cards.forEach(function(c) {
+      c.style.setProperty('--glow-opacity', '0', 'important');
+      c.style.animation = 'none';
+      c.style.opacity = '1';
+      c.style.transform = 'none';
+    });
+    document.querySelectorAll('.reveal-item').forEach(function(el) {
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+      el.style.transition = 'none';
+    });
+
+    showExportToast('正在生成高清 PDF...', 20000);
+
+    setTimeout(function() {
+      html2canvas(document.querySelector('.container'), {
+        scale: 3,
+        useCORS: true,
+        backgroundColor: document.documentElement.getAttribute('data-theme') === 'dark' ? '#0f1117' : '#f0f3f8',
+        logging: false,
+        windowWidth: 1120,
+        onclone: function(clonedDoc) {
+          // Ensure cloned doc has proper styles
+          var clonedBody = clonedDoc.body;
+          clonedBody.style.margin = '0';
+          clonedBody.style.padding = '24px';
+        }
+      }).then(function(canvas) {
+        // Restore everything
+        hideIds.forEach(function(id){ var el=document.getElementById(id); if(el) el.style.display=''; });
+        document.querySelectorAll('.drag-handle').forEach(function(el){ el.style.display=''; });
+        setExportLoading(btn, false);
+
+        // Restore glow state
+        var savedSettings = JSON.parse(localStorage.getItem('resume_settings') || '{}');
+        if (savedSettings.glowBorder === false) {
+          document.body.classList.add('no-glow');
+        } else {
+          document.body.classList.remove('no-glow');
+        }
+        cards.forEach(function(c) {
+          c.style.removeProperty('--glow-opacity');
+          c.style.animation = '';
+          c.style.opacity = '';
+          c.style.transform = '';
+        });
+        document.querySelectorAll('.reveal-item').forEach(function(el) {
+          el.style.opacity = '';
+          el.style.transform = '';
+          el.style.transition = '';
+        });
+
+        // Generate PDF with smart pagination
+        var imgData = canvas.toDataURL('image/png');
+        var pdfW = 210; // A4 mm
+        var pdfH = 297;
+        var margin = 10;
+        var drawW = pdfW - margin * 2;
+        var ratio = canvas.width / canvas.height;
+        var drawH = drawW / ratio;
+        var pageDrawH = pdfH - margin * 2;
+        var totalPages = Math.ceil(drawH / pageDrawH);
+
+        var jsPDF = window.jspdf.jsPDF;
+        var pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+
+        for (var p = 0; p < totalPages; p++) {
+          if (p > 0) pdf.addPage();
+
+          // Calculate slice
+          var srcSliceH = (pageDrawH / drawH) * canvas.height;
+          var srcY = Math.min(p * srcSliceH, canvas.height - srcSliceH);
+          var actualSliceH = Math.min(srcSliceH, canvas.height - srcY);
+
+          var tempC = document.createElement('canvas');
+          tempC.width = canvas.width;
+          tempC.height = actualSliceH;
+          var ctx = tempC.getContext('2d');
+          ctx.drawImage(canvas, 0, srcY, canvas.width, actualSliceH, 0, 0, canvas.width, actualSliceH);
+
+          var sliceData = tempC.toDataURL('image/png');
+          var outH = actualSliceH * (drawW / canvas.width);
+          pdf.addImage(sliceData, 'PNG', margin, margin, drawW, outH);
+        }
+
+        pdf.save('邱星如_简历.pdf');
+        showExportToast('\u2705 PDF 已下载');
+      }).catch(function(err) {
+        hideIds.forEach(function(id){ var el=document.getElementById(id); if(el) el.style.display=''; });
+        document.querySelectorAll('.drag-handle').forEach(function(el){ el.style.display=''; });
+        setExportLoading(btn, false);
+        cards.forEach(function(c) {
+          c.style.removeProperty('--glow-opacity');
+          c.style.animation = '';
+          c.style.opacity = '';
+          c.style.transform = '';
+        });
+        document.querySelectorAll('.reveal-item').forEach(function(el) {
+          el.style.opacity = '';
+          el.style.transform = '';
+          el.style.transition = '';
+        });
+        // Restore glow state
+        var savedSettings = JSON.parse(localStorage.getItem('resume_settings') || '{}');
+        if (savedSettings.glowBorder === false) {
+          document.body.classList.add('no-glow');
+        } else {
+          document.body.classList.remove('no-glow');
+        }
+        showExportToast('\u274c 导出失败');
+        console.error(err);
+      });
+    }, 500);
   });
-  var cards = bento.querySelectorAll(':scope > .card:not(.footer)');
-  cards.forEach(function(card){
-    var handle = document.createElement('div');
-    handle.className = 'drag-handle';
-    handle.innerHTML = '<span></span><span></span><span></span>';
-    card.appendChild(handle);
-  });
+
+  // ===== Init =====
+  initTypewriter();
+  initStagger();
+
 })();
 </script>
+
 </body>
 </html>
